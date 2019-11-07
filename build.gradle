@@ -35,6 +35,10 @@ allprojects {
     }
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
+
+    compileJava {
+        options.encoding = 'UTF-8'
+    }
 }
 
 subprojects {
@@ -52,8 +56,8 @@ subprojects {
         from('src/main/resources') {
             include '**/*.json'
             filter ReplaceTokens, tokens: [
-                "version": version,
-                "core.version": project(":core").version
+                    "version": version,
+                    "core.version": project(":core").version
             ]
         }
 
@@ -62,12 +66,17 @@ subprojects {
         }
         outputs.upToDateWhen { false }
     }
+
+    compileJava {
+        options.compilerArgs << '-parameters'
+        options.encoding = 'UTF-8'
+    }
 }
 
 build.dependsOn jar
 
 compileJava {
-    options.compilerArgs << '-parameters' // reflection fix
+    options.compilerArgs << '-parameters'
 }
 
 artifacts {
@@ -75,4 +84,3 @@ artifacts {
 }
 
 compileJava.options.encoding = 'UTF-8'
-

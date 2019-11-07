@@ -87,13 +87,7 @@ public class YoutubeCommand extends MusicCommand {
         waiter.setMessageHandler(e -> new Thread(() -> {
             String content = e.getMessage().getContentRaw();
             int[] numerkiFilmow;
-            if (hasPremium(context.getMember())) {
-                numerkiFilmow = Arrays.stream(content.split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
-            } else {
-                Integer intedzer = (Integer) managerArgumentow.getArguments().get("integer")
-                        .execute(e.getMessage().getContentRaw(), context.getTlumaczenia(), context.getLanguage());
-                numerkiFilmow = new int[] {intedzer == null ? -1 : intedzer};
-            }
+            numerkiFilmow = Arrays.stream(content.split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
             deleted.set(true);
             m.delete().queue();
             for (int numerek : numerkiFilmow) {
@@ -135,7 +129,6 @@ public class YoutubeCommand extends MusicCommand {
             for (AudioTrack at : audioTracks) {
                 mms.addToQueue(context.getSender(), at, context.getLanguage());
                 added.add(at);
-                if (!hasPremium(context.getMember())) break;
             }
             if (added.size() == 1) {
                 if (!mms.isPlaying()) mms.play();
