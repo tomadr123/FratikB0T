@@ -23,10 +23,10 @@ import lombok.Setter;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.sharding.ShardManager;
+import pl.fratik.core.command.Command;
 import pl.fratik.core.command.CommandCategory;
 import pl.fratik.core.command.CommandContext;
 import pl.fratik.core.command.PermLevel;
-import pl.fratik.core.command.PremiumCommand;
 import pl.fratik.core.entity.GuildConfig;
 import pl.fratik.core.entity.GuildDao;
 import pl.fratik.core.util.CommonErrors;
@@ -35,14 +35,10 @@ import pl.fratik.music.managers.NowyManagerMuzyki;
 
 import java.util.Objects;
 
-public abstract class MusicCommand extends PremiumCommand {
+public abstract class MusicCommand extends Command {
 
     @Getter protected boolean requireConnection = false;
     @Setter private static NowyManagerMuzyki managerMuzyki;
-
-    protected MusicCommand() {
-        requiresPremium = false;
-    }
 
     @Override
     public boolean preExecute(CommandContext context) {
