@@ -77,6 +77,14 @@ public class DailyCommand extends Command {
         if (mc.getFratikCoiny() + 250 == Long.MAX_VALUE) {
             context.send(context.getTranslated("daily.too.many.coins"));
             return false;
+        } else if (calendar.get(Calendar.MONTH) == 11 && calendar.get(Calendar.DAY_OF_MONTH) == 24 && mc.getFratikCoiny() + 500 == Long.MAX_VALUE) {
+            context.send(context.getTranslated("daily.too.many.coins"));
+            return false;
+        }
+        if (calendar.get(Calendar.MONTH) == 11 && calendar.get(Calendar.DAY_OF_MONTH) == 24 {
+            mc.setFratikCoiny(mc.getFratikCoiny() + 500);
+        } else
+            mc.setFratikCoiny(mc.getFratikCoiny() + 250);
         }
         mc.setFratikCoiny(mc.getFratikCoiny() + 250);
         mc.setDailyDate(dailyDate);
